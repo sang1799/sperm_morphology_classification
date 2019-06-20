@@ -3,7 +3,7 @@ in my case I use microscope images
 
 ### 2 - Label images 
 using `labelImg` https://github.com/tzutalin/labelImg
-or using `boundingbox` https://github.com/sang1799/boundingbox
+or using `boundingbox` https://github.com/sang1799/spermboundingbox
 unzip labelImg\
 run cmd and go to labelImg dir
 ```
