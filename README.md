@@ -1,19 +1,9 @@
-# Train-an-Object-Detection-Classifier 
-
-## youtube tutorial
-[![Train-an-Object-Detection-Classifier](https://img.youtube.com/vi/eJcIntjgCbQ/0.jpg)](https://youtu.be/eJcIntjgCbQ)
-
 ### 1 - Gathering images
-in my case I use google images to find [chinook] photos , I gather 200 sample
+in my case I use microscope images
 
-### 2 - Convert extensoins 
-convert all images extensoins to `xx.jpg` , using Format Factory http://www.pcfreetime.com/
-
-### 3 - Rename all images 
-go to images directory in my case `chinook` and type in cmd `python renameFiles.py`
-
-### 4 - Label images 
+### 2 - Label images 
 using `labelImg` https://github.com/tzutalin/labelImg
+or using `boundingbox` https://github.com/sang1799/boundingbox
 unzip labelImg\
 run cmd and go to labelImg dir
 ```
@@ -22,20 +12,16 @@ pyrcc5 -o resources.py resources.qrc
 python labelImg.py
 
   ```
-   
-### 5 - Split images manually randomly
-all my samples = 200 ,130 for train ,70 for test
-
-### 6 - Installing TensorFlow-GPU
+### 3 - Installing TensorFlow-GPU
 
 ```pip install tensorflow-gpu 
 pip install --upgrade tensorflow-gpu
 ```
 
-### 7 - Creat virtual environment 
+### 4 - Creat virtual environment 
 
 ```
-conda create -n tensorflow1 pip python=3.5 
+conda create -n tensorflow1 
 activate tensorflow1 
 pip install --ignore-installed --upgrade tensorflow-gpu
 
@@ -51,15 +37,15 @@ pip install --ignore-installed --upgrade tensorflow-gpu
 (tensorflow1) C:\> pip install pandas 
 (tensorflow1) C:\> pip install opencv-python 
 ```
-### 8 - Download the full TensorFlow object detection repository
+### 5 - Download the full TensorFlow object detection repository
 https://github.com/tensorflow/models.git
 
 
-### 9 - Download  `faster_rcnn_inception_v2_coco`
+### 6 - Download  `faster_rcnn_inception_v2_coco`
 https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md
 
-### 10 - Download  my Repository 
-https://github.com/seraj94ai/Train-Object-Detection-Classifier.git
+### 7 - Download  my Repository 
+https://github.com/sang1799/sperm_morphology_classification.git
 unzip folder and copy paste in `C:\tensorflow1\models\research\object_detection`
 open cmd
 ```
@@ -69,7 +55,7 @@ mkdir inference_graph
 mkdir training
 ```
 
-### 11 - Configure environment variable
+### 8 - Configure environment variable
 
 Configure PYTHONPATH environment variable
 
@@ -84,7 +70,7 @@ echo %PYTHONPATH%
 set PATH=%PATH%;PYTHONPATH
 echo %PATH%
 ```
-### 12 - Compile Protobufs
+### 9 - Compile Protobufs
 Protobuf (Protocol Buffers) libraries must be compiled , it used by TensorFlow to configure model and training parameters
 Open Anaconda Prompt and go to `C:\tensorflow1\models\research`
 ```
@@ -94,11 +80,11 @@ protoc --python_out=. .\object_detection\protos\anchor_generator.proto .\object_
 (tensorflow1) C:\tensorflow1\models\research> python setup.py build
 (tensorflow1) C:\tensorflow1\models\research> python setup.py install
 ```
-### 13 - Test TensorFlow setup
+### 10 - Test TensorFlow setup
 Test TensorFlow setup to verify it works
 `(tensorflow1) C:\tensorflow1\models\research\object_detection> jupyter notebook object_detection_tutorial.ipynb`
 
-### 14 - Generate Training Data
+### 11 - Generate Training Data
 TFRecords is an input data to the TensorFlow training model
 creat `.csv` files from `.xml` files 
 ```
@@ -110,16 +96,16 @@ This creates a `train_labels.csv` and `test_labels.csv` file in the `\object_det
 python generate_tfrecord.py --csv_input=images\train_labels.csv --image_dir=images\train --output_path=train.record
 python generate_tfrecord.py --csv_input=images\test_labels.csv --image_dir=images\test --output_path=test.record
 ```
-### 15 - Edit `generate_tfrecord.py`
+### 12 - Edit `generate_tfrecord.py`
 edit edit `generate_tfrecord.py` and put your classes names
 
-### 16 - Create a label map and edit the training configuration file.
+### 13 - Create a label map and edit the training configuration file.
 go to `\data `
 copy `pet_label_map.pbtxt` to `\training` dir and rename it to  `labelmap.pbtxt`
 
-edit it  to your class `chinook`
+edit it  to your class `sperm_classification` 
 
-### 17 - Configure object detection tranning pipeline
+### 14 - Configure object detection tranning pipeline
 `cd C:\tensorflow1\models\research\object_detection\samples\configs`
 copy `faster_rcnn_inception_v2_pets.config`
 past it in  `\training` dir and edit it 
@@ -161,77 +147,3 @@ change “XXXX” in “model.ckpt-XXXX” should be replaced with the highest-n
 ```
 python export_inference_graph.py --input_type image_tensor --pipeline_config_path training/faster_rcnn_inception_v2_pets.config --trained_checkpoint_prefix training/model.ckpt-XXXX --output_directory inference_graph
 ```
-
-
-![alt text](https://github.com/seraj94ai/Train-Object-Detection-Classifier/blob/master/in/2.jpg)
-![alt text](https://github.com/seraj94ai/Train-Object-Detection-Classifier/blob/master/out/2.PNG)
- 
-![alt text](https://github.com/seraj94ai/Train-Object-Detection-Classifier/blob/master/in/3.jpg)
-![alt text](https://github.com/seraj94ai/Train-Object-Detection-Classifier/blob/master/out/3.PNG)
-
-![alt text](https://github.com/seraj94ai/Train-Object-Detection-Classifier/blob/master/in/4.jpg)
-![alt text](https://github.com/seraj94ai/Train-Object-Detection-Classifier/blob/master/out/4.PNG)
-
-![alt text](https://github.com/seraj94ai/Train-Object-Detection-Classifier/blob/master/in/5.jpg)
-![alt text](https://github.com/seraj94ai/Train-Object-Detection-Classifier/blob/master/out/5.PNG)
-
-![alt text](https://github.com/seraj94ai/Train-Object-Detection-Classifier/blob/master/in/1.jpg)
-![alt text](https://github.com/seraj94ai/Train-Object-Detection-Classifier/blob/master/out/1.PNG)
-
-
-
-# Appendix: Common Errors
-#### 1. ModuleNotFoundError: No module named 'deployment'
-
-![alt text](https://github.com/seraj94ai/Train-Object-Detection-Classifier/blob/master/errs/err3.PNG)
-
-![alt text](https://github.com/seraj94ai/Train-Object-Detection-Classifier/blob/master/errs/solve%20err3.PNG)
-
-You can use “echo %PATH%” and “echo %PYTHONPATH%” to check the environment variables and make sure they are set up correctly.
-Also, make sure you have run these commands from the `\models\research` directory:
-```
-setup.py build
-setup.py install
-```
-
-#### 2. ImportError: cannot import name 'preprocessor_pb2'
-ImportError: cannot import name 'string_int_label_map_pb2'
-(or similar errors with other pb2 files)
-This occurs when the protobuf files (in this case, preprocessor.proto) have not been compiled
-go to step 12
-
-#### 3.
-![alt text](https://github.com/seraj94ai/Train-Object-Detection-Classifier/blob/master/errs/err1.PNG)
-
-![alt text](https://github.com/seraj94ai/Train-Object-Detection-Classifier/blob/master/errs/solve%20err1.PNG)
-in `C:\tensorflow1\models\research\object_detection\utils\learning_schedules.py`
-
-replace `range(num_boundaries)` to  `[i for i in range(num_boundaries)]`
-```
-(tensorflow1) C:\tensorflow1\models\research> python setup.py build
-(tensorflow1) C:\tensorflow1\models\research> python setup.py install
-```
-
-#### 4.
-![alt text](https://github.com/seraj94ai/Train-Object-Detection-Classifier/blob/master/errs/err2.PNG)
-
-![alt text](https://github.com/seraj94ai/Train-Object-Detection-Classifier/blob/master/errs/solve%20err2.PNG)
-
-![alt text](https://github.com/seraj94ai/Train-Object-Detection-Classifier/blob/master/errs/solve%20err%202.PNG)
-
-in `C:\tensorflow1\models\research\object_detection\generate_tfrecord.py`
-replace `[else: None]` by `[else: return 0]`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
