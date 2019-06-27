@@ -2,8 +2,8 @@
 in my case I use microscope images
 
 ### 2. Label images accodring to morphology based on reproductive biology 
-##### labelImg 'https://github.com/tzutalin/labelImg'
-##### boundingbox 'https://github.com/sang1799/spermboundingbox'
+##### labelImg https://github.com/tzutalin/labelImg
+##### boundingbox https://github.com/sang1799/spermboundingbox
 unzip labelImg\
 run cmd and go to labelImg dir
 ```
