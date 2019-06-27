@@ -1,9 +1,9 @@
-### 1 - Gathering images
+### 1. Gathering sperm images
 in my case I use microscope images
 
-### 2 - Label images 
-using `labelImg` https://github.com/tzutalin/labelImg
-using `boundingbox` https://github.com/sang1799/spermboundingbox
+### 2. Label images accodring to morphology based on reproductive biology 
+##### labelImg 'https://github.com/tzutalin/labelImg'
+##### boundingbox 'https://github.com/sang1799/spermboundingbox'
 unzip labelImg\
 run cmd and go to labelImg dir
 ```
@@ -12,18 +12,17 @@ pyrcc5 -o resources.py resources.qrc
 python labelImg.py
 ```
 
-### 3 - Installing TensorFlow-GPU
+### 3. Installing TensorFlow-GPU
 ```
 pip install tensorflow-gpu 
 pip install --upgrade tensorflow-gpu
 ```
 
-### 4 - Creat virtual environment 
+### 4. Creat virtual environment 
 ```
 conda create -n tensorflow1 
 activate tensorflow1 
 pip install --ignore-installed --upgrade tensorflow-gpu
-
 ```
   other necessary packages
 ```
@@ -37,10 +36,10 @@ pip install --ignore-installed --upgrade tensorflow-gpu
 (tensorflow1) C:\> pip install opencv-python 
 ```
 
-### 5 - Download the full TensorFlow object detection repository
+### 5. Download the full TensorFlow object detection repository
 https://github.com/tensorflow/models.git
 
-### 6 - Download  my Repository 
+### 6. Download my Repository (sperm_morphology_classification) 
 https://github.com/sang1799/sperm_morphology_classification.git
 unzip folder and copy paste in `C:\tensorflow1\models\research\object_detection`
 open cmd
@@ -48,7 +47,7 @@ open cmd
 cd C:\tensorflow1\models\research\object_detection
 ```
 
-### 8 - Configure environment variable
+### 7. Configure environment variable
 Configure PYTHONPATH environment variable
 
 PYTHONPATH variable must be created that points to the directories
@@ -63,7 +62,7 @@ set PATH=%PATH%;PYTHONPATH
 echo %PATH%
 ```
 
-### 9 - Compile Protobufs
+### 8. Compile Protobufs
 Protobuf (Protocol Buffers) libraries must be compiled , it used by TensorFlow to configure model and training parameters
 Open Anaconda Prompt and go to `C:\tensorflow1\models\research`
 ```
@@ -74,7 +73,7 @@ protoc --python_out=. .\object_detection\protos\anchor_generator.proto .\object_
 (tensorflow1) C:\tensorflow1\models\research> python setup.py install
 ```
 
-### 10 - Test Trained models
+### 9. Test trained models
 Test trained model to verfity microscope images and movies of sperm
 `(tensorflow1) C:\tensorflow1\models\research\object_detection> idle`
 
