@@ -75,11 +75,13 @@ protoc --python_out=. .\object_detection\protos\anchor_generator.proto .\object_
 
 ### 9. Test trained models
 Test trained model to verfity microscope images and movies of sperm
-`(tensorflow1) C:\tensorflow1\models\research\object_detection> idle`
+```
+(tensorflow1) C:\tensorflow1\models\research\object_detection> idle
+```
 
  1) images : open the 'Sperm_detection_image.py'
-             eidt MODEL_NAME = indicate download folder for your choidce
-			 edit IMAGE_NAME = your sperm image in ..\object_detection
+             eidt MODEL_NAME = indicate download folder for your choidce	
+	     edit IMAGE_NAME = your sperm image in ..\object_detection
 			 edit PATH_TO_LABELS = if you use recongnition model, change to Sperm_recongnition_labelmap.pbtxt by other path
 			 run
  2) movies : open the 'Sperm_detection_video'
