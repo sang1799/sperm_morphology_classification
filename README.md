@@ -42,18 +42,14 @@ https://github.com/tensorflow/models.git
 ### 6. Download my Repository (sperm_morphology_classification) 
 https://github.com/sang1799/sperm_morphology_classification.git
 unzip folder and copy paste in `C:\tensorflow1\models\research\object_detection`
-open cmd
-```
-cd C:\tensorflow1\models\research\object_detection
-```
 
 ### 7. Configure environment variable
 Configure PYTHONPATH environment variable
 
-PYTHONPATH variable must be created that points to the directories
-\models \
-\models\research \
-\models\research\slim  
+open cmd
+```
+cd C:\tensorflow1\models\
+```
 ##### NOTE : every time you run your project must add this lines
 ```
 set PYTHONPATH=C:\tensorflow1\models;C:\tensorflow1\models\research;C:\tensorflow1\models\research\slim
